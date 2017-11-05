@@ -1,0 +1,32 @@
+version: '2'
+networks:
+ weberhome_lan:
+  external: true
+services:
+ transmission:
+  image: neonox31/transmission-openvpn-filebot
+  container_name: transmission
+  restart: always
+  networks:
+    - weberhome_lan
+  cap_add:
+    - NET_ADMIN
+  devices:
+    - /dev/net/tun
+  restart: always
+  ports:
+    - "9091:9091"
+  dns:
+    - 8.8.8.8
+    - 8.8.4.4
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /srv/docker/transmission-openvpn-filebot/:/data
+    - /media/nas/video:/output
+  env_file:
+    - .env
+  labels:
+    - "traefik.enable=true"
+    - "traefik.backend=transmission"
+    - "traefik.port=9091"
+    - "traefik.frontend.rule=Host:transmission.weberhome.lan, transmission"
