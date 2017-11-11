@@ -2,7 +2,6 @@ FROM haugene/transmission-openvpn:latest
 
 ENV FILEBOT_VERSION 4.7.9
 ENV JAVA_OPTS "-Dsun.jnu.encoding=UTF-8 -Dfile.encoding=UTF-8 -DuseGVFS=false -Djava.net.useSystemProxies=false -Dapplication.deployment=docker -Dapplication.dir=/data -Duser.home=/data -Djava.io.tmpdir=/data/tmp -Djava.util.prefs.PreferencesFactory=net.filebot.util.prefs.FilePreferencesFactory -Dnet.filebot.util.prefs.file=/data/prefs.properties"
-ENV LANG=en_US.UTF-8
 
 RUN add-apt-repository ppa:openjdk-r/ppa -y \
     && apt-get update \
