@@ -23,6 +23,8 @@ services:
     - /etc/localtime:/etc/localtime:ro
     - /srv/docker/transmission-openvpn-filebot/:/data
     - /media/nas/video:/output
+    - /media/nas/downloads/completed:/downloads/completed
+    - /media/nas/downloads/incomplete:/downloads/incomplete
   env_file:
     - .env
   labels:
